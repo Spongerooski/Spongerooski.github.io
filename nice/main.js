@@ -28,10 +28,11 @@ input.oninput = () => {
             switch (smt) {
                 case 'image':
                 case 'thumbnail':
+                    if (!part.url) throw new Error('epic games')
                     part = `(sdict "url" "${escape(part.url)}")`
                 break
                 case 'footer':
-                    if (typeof(part) !== 'object') throw new Error('epic')
+                    if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('epic')
                     let foot = ''
                     if (part.icon_url) foot += ` "icon_url" "${escape(part.icon_url)}"`
                     if (part.text) foot += ` "text" "${escape(part.text)}"`
@@ -48,7 +49,7 @@ input.oninput = () => {
                     part = `(cslice ${fild.join(' ')})`
                 break
                 case 'author':
-                    if (typeof(part) !== 'object') throw new Error('pejekhj')
+                    if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('pejekhj')
                     let auth = ''
                     if (part.icon_url) auth += ` "icon_url" "${escape(part.icon_url)}"`
                     if (part.name) auth += ` "name" "${escape(part.name)}"`
