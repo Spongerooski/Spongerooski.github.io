@@ -22,6 +22,7 @@ input.oninput = () => {
             }
             return ret
         }
+        if (typeof(data) !== 'object' || Array.isArray(data)) throw new Error('owperowkepr')
         for (let smt of ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url']) {
             if (!data[smt]) continue
             let part = data[smt]
