@@ -3,7 +3,7 @@ I suck at css pls no bully :(
 */
 
 :root{
-    --color: #242424;
+    --color: #00000e;
     --font: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     --text: white
 }
@@ -12,18 +12,17 @@ I suck at css pls no bully :(
     background-color: var(--color);
     font-family: var(--font);
     text-rendering: optimizeLegibility;
-    font-weight: 548;
-    overflow: auto;
     outline: none;
     resize: none;
-    width: 50em;
-    height: 60em;
+    width: 98%;
+    height: 45%;
     white-space: pre;
-    position: relative;
-    top: -80px;
-    right: -180px;
+    position: absolute;
+    bottom: 25px;
+    border: 0;
+    font-size: 15px;
 }
-.body{
+body{
     background-color: var(--color);
 }
 #in{
@@ -31,16 +30,16 @@ I suck at css pls no bully :(
     background-color: var(--color);
     font-family: var(--font);
     text-rendering: optimizeLegibility;
-    font-weight: 548;
-    overflow: auto;
     outline: none;
     resize: none;
-    width: 50em;
-    height: 60em;
+    width: 98%;
+    height: 45%;
     white-space: pre;
     float: left;
-    position: relative;
-    left: 25px;
+    position: absolute;
+    left: auto;
+    border: 0;
+    font-size: 15px;
 }
 .JSON{
     color: var(--text);
@@ -56,4 +55,23 @@ I suck at css pls no bully :(
     font-weight: 548;
     position: absolute;
     right: 125px;
+}
+#footer{
+    position:absolute;
+    bottom: 6px;
+    color: var(--text);
+    text-align: center;
+    left: 0;
+    right: 0;
+    font-family: var(--font);
+    font-size: 15px;
+}
+
+h1{
+    font-family: var(--font);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    left: 0;
+    right: 0;
 }

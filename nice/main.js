@@ -40,14 +40,17 @@ input.oninput = () => {
                     part = `(sdict${foot})`
                 break
                 case 'fields':
-                    let fild = []
+                    let fild = [], big
                     if (!Array.isArray(part)) throw new Error('bruh')
                     for (let field of part) {
                         if (typeof(field) !== 'object') throw new Error('e')
                         if (typeof(field.inline||false) !== 'boolean') throw new Error('someone messed up')
-                        fild.push(`(sdict "name" "${escape(field.name)}" "value" "${escape(field.value)}" "inline" ${(field.inline||false).toString()})`)
+                        if (!field.value||!field.name) throw new Error('songlosses')
+                        let sjawlk = `(sdict "name" "${escape(field.name)}" "value" "${escape(field.value)}" "inline" ${(field.inline||false).toString()})`
+                        fild.push(sjawlk)
+                        if (sjawlk.length > 200) big = true
                     }
-                    part = `(cslice ${fild.join(' ')})`
+                    part = `(cslice ${big ? '\n\t' + fild.join('\n\t') + '\n' : fild.join(' ')})`
                 break
                 case 'author':
                     if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('pejekhj')
