@@ -1,0 +1,77 @@
+/*
+I suck at css pls no bully :(
+*/
+
+:root{
+    --color: #00000e;
+    --font: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    --text: white
+}
+#ans{
+    color: var(--text);
+    background-color: var(--color);
+    font-family: var(--font);
+    text-rendering: optimizeLegibility;
+    outline: none;
+    resize: none;
+    width: 98%;
+    height: 45%;
+    white-space: pre;
+    position: absolute;
+    bottom: 25px;
+    border: 0;
+    font-size: 15px;
+}
+body{
+    background-color: var(--color);
+}
+#in{
+    color: var(--text);
+    background-color: var(--color);
+    font-family: var(--font);
+    text-rendering: optimizeLegibility;
+    outline: none;
+    resize: none;
+    width: 98%;
+    height: 45%;
+    white-space: pre;
+    float: left;
+    position: absolute;
+    left: auto;
+    border: 0;
+    font-size: 15px;
+}
+.JSON{
+    color: var(--text);
+    font-family: var(--font);
+    text-rendering: optimizeLegibility;
+    position: absolute;
+    left: 125px;
+}
+.output{
+    color: var(--text);
+    font-family: var(--font);
+    text-rendering: optimizeLegibility;
+    font-weight: 548;
+    position: absolute;
+    right: 125px;
+}
+#footer{
+    position:absolute;
+    bottom: 6px;
+    color: var(--text);
+    text-align: center;
+    left: 0;
+    right: 0;
+    font-family: var(--font);
+    font-size: 15px;
+}
+
+h1{
+    font-family: var(--font);
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    left: 0;
+    right: 0;
+}
