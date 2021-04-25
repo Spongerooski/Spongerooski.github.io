@@ -32,7 +32,7 @@ input.oninput = () => {
         const embedFields = ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url', 'type']
         onlyKeys(data, embedFields)
         for (let smt of embedFields) {
-            if (!data[smt]) continue
+            if (!data[smt] || smt === 'type') continue
             let part = data[smt]
             switch (smt) {
                 case 'image':
