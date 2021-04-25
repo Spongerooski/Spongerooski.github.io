@@ -29,10 +29,9 @@ input.oninput = () => {
             if (!Object.keys(obj).every((e) => keys.includes(e))) throw new Error(':(')
         }
         if (typeof(data) !== 'object' || Array.isArray(data)) throw new Error('owperowkepr')
-        const embedFields = ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url', 'type']
-        onlyKeys(data, embedFields)
-        for (let smt of embedFields) {
-            if (!data[smt] || smt === 'type') continue
+        onlyKeys(data, ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url', 'type'])
+        for (let smt of ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url']) {
+            if (!data[smt]) continue
             let part = data[smt]
             switch (smt) {
                 case 'image':
