@@ -10,55 +10,67 @@ input.oninput = () => {
         * @returns {string}
         */
         function escape(str) {
-            let escape = '', ret = ''
+            let  ret = ''
             for (let i = 0; i < str.length; i++) {
                 let char = str[i]
                 if (char === '\n') ret += '\\n'
                 else if (char === '"') ret += '\\x22'
                 else ret += char
-                if (escape === '\\' && char === '\\') escape = 'epic'
-                escape = char
                 if (char === '\\') ret += '\\'
             }
             return ret
+        } 
+        /**
+         * 
+         * @param {Object} obj 
+         * @param {Array<string>} keys 
+         */
+        function onlyKeys(obj, keys) {
+            if (!Object.keys(obj).every((e) => keys.includes(e))) throw new Error(':(')
         }
         if (typeof(data) !== 'object' || Array.isArray(data)) throw new Error('owperowkepr')
-        for (let smt of ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url']) {
+        const embedFields = ['description', 'image', 'thumbnail', 'footer', 'title', 'fields', 'author', 'color', 'url', 'type']
+        onlyKeys(data, embedFields)
+        for (let smt of embedFields) {
             if (!data[smt]) continue
             let part = data[smt]
             switch (smt) {
                 case 'image':
                 case 'thumbnail':
+                    onlyKeys(part, ['url', 'proxy_url', 'width', 'height'])
                     if (!part.url) throw new Error('epic games')
-                    part = `(sdict "url" "${escape(part.url)}")`
+                    part = `(sdict\n\t"url" "${escape(part.url)}"\n)`
                 break
                 case 'footer':
                     if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('epic')
+                    onlyKeys(part, ['text', 'icon_url', 'proxy_icon_url'])
                     let foot = ''
-                    if (part.icon_url) foot += ` "icon_url" "${escape(part.icon_url)}"`
-                    if (part.text) foot += ` "text" "${escape(part.text)}"`
-                    part = `(sdict${foot})`
+                    if (part.icon_url) foot += `\n\t"icon_url" "${escape(part.icon_url)}"`
+                    if (part.text) foot += `\n\t"text" "${escape(part.text)}"`
+                    part = `(sdict${foot}${foot ? '\n' : ''})`
                 break
                 case 'fields':
                     let fild = [], big
                     if (!Array.isArray(part)) throw new Error('bruh')
                     for (let field of part) {
-                        if (typeof(field) !== 'object') throw new Error('e')
+                        if (typeof(field) !== 'object'||Array.isArray(field)) throw new Error('e')
+                        onlyKeys(field, ['name', 'value', 'inline'])
                         if (typeof(field.inline||false) !== 'boolean') throw new Error('someone messed up')
                         if (!field.value||!field.name) throw new Error('songlosses')
                         let sjawlk = `(sdict "name" "${escape(field.name)}" "value" "${escape(field.value)}" "inline" ${(field.inline||false).toString()})`
                         fild.push(sjawlk)
                         if (sjawlk.length > 200) big = true
                     }
-                    part = `(cslice ${big ? '\n\t' + fild.join('\n\t') + '\n' : fild.join(' ')})`
+                    part = `(cslice ${big || fild.join(' ').length > 500 ? '\n\t' + fild.join('\n\t') + '\n' : fild.join(' ')})`
                 break
                 case 'author':
                     if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('pejekhj')
                     let auth = ''
-                    if (part.icon_url) auth += ` "icon_url" "${escape(part.icon_url)}"`
-                    if (part.name) auth += ` "name" "${escape(part.name)}"`
-                    if (part.url) auth += ` "url" "${escape(part.url)}"`
-                    part = `(sdict${auth})`
+                    onlyKeys(part, ['name', 'icon_url', 'url', 'proxy_icon_url'])
+                    if (part.icon_url) auth += `\n\t"icon_url" "${escape(part.icon_url)}"`
+                    if (part.name) auth += `\n\t"name" "${escape(part.name)}"`
+                    if (part.url) auth += `\n\t"url" "${escape(part.url)}"`
+                    part = `(sdict${auth}${auth ? '\n' : ''})`
                 break
                 case 'color':
                     if (/^#[a-fA-F0-9]{1,6}$/.test(part)) part = '0x' + part.replace('#', '')
@@ -75,5 +87,6 @@ input.oninput = () => {
     } catch(e) {
         answer.style.color = 'red'
         answer.textContent = 'invalid embed json'
+        console.error(e)
     }
 }
