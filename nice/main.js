@@ -38,7 +38,7 @@ input.oninput = () => {
                 case 'thumbnail':
                     onlyKeys(part, ['url', 'proxy_url', 'width', 'height'])
                     if (!part.url) throw new Error('epic games')
-                    part = `(sdict\n\t"url" "${escape(part.url)}"\n)`
+                    part = `(sdict "url" "${escape(part.url)}")`
                 break
                 case 'footer':
                     if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('epic')
