@@ -1,10 +1,6 @@
-/*
-I suck at css pls no bully :(
-*/
-
 :root{
-    --color: #00000e;
-    --font: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+    --color: #292929;
+    --font: 'Poppins', sans-serif;
     --text: white
 }
 #ans{
@@ -20,11 +16,10 @@ I suck at css pls no bully :(
     position: absolute;
     bottom: 25px;
     border: 0;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 15;
 }
-body{
-    background-color: var(--color);
-}
+
 #in{
     color: var(--text);
     background-color: var(--color);
@@ -39,23 +34,11 @@ body{
     position: absolute;
     left: auto;
     border: 0;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 15;
+
 }
-.JSON{
-    color: var(--text);
-    font-family: var(--font);
-    text-rendering: optimizeLegibility;
-    position: absolute;
-    left: 125px;
-}
-.output{
-    color: var(--text);
-    font-family: var(--font);
-    text-rendering: optimizeLegibility;
-    font-weight: 548;
-    position: absolute;
-    right: 125px;
-}
+
 #footer{
     position:absolute;
     bottom: 6px;
@@ -69,9 +52,13 @@ body{
 
 h1{
     font-family: var(--font);
-    font-weight: 700;
+    font: weight 1500px;
     color: var(--text);
     text-align: center;
     left: 0;
     right: 0;
+}
+
+body{
+    background-color: var(--color);
 }

@@ -60,7 +60,7 @@ input.oninput = () => {
                         fild.push(sjawlk)
                         if (sjawlk.length > 200) big = true
                     }
-                    part = `(cslice ${big || fild.join(' ').length > 500 ? '\n\t' + fild.join('\n\t') + '\n' : fild.join(' ')})`
+                    part = `(cslice ${big || fild.join(' ').length > 250 ? '\n\t' + fild.join('\n\t') + '\n' : fild.join(' ')})`
                 break
                 case 'author':
                     if (typeof(part) !== 'object' || Array.isArray(part)) throw new Error('pejekhj')
